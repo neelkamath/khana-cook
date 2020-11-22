@@ -14,6 +14,8 @@ import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {LogInComponent} from './log-in/log-in.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {AccountComponent} from './account/account.component';
 
 registerLocaleData(en);
 
@@ -22,6 +24,8 @@ registerLocaleData(en);
         AppComponent,
         SignUpComponent,
         LogInComponent,
+        DashboardComponent,
+        AccountComponent,
     ],
     imports: [
         BrowserModule,

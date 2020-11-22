@@ -34,7 +34,7 @@ export class LogInComponent implements OnInit {
       }
       return;
     }
-    this.message.success('Logged in.');
+    location.href = '/dashboard';
   }
 
 }
