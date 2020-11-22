@@ -19,6 +19,10 @@ Frontend UI used by cooks for [Khana](https://github.com/neelkamath/khana-backen
         - macOS: `control`+`C`
         - Others: `Ctrl`+`C`
     1. [Shut down](https://github.com/neelkamath/khana-backend#usage) the backend.
+    
+## Contributing
+
+The access token gets stored in `localStorage` under the key `accessToken`.
 
 ## License
 

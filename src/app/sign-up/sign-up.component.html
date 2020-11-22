@@ -1,0 +1,12 @@
+<h2>Sign Up</h2>
+<form>
+    <label>
+        Email address: <input [(ngModel)]="emailAddress" name="emailAddress" nz-input required type="email">
+    </label>
+    <br><br>
+    <label>
+        Password: <input [(ngModel)]="password" name="password" nz-input required type="password">
+    </label>
+    <br><br>
+    <button (click)="submit()" nz-button type="submit">Sign up</button>
+</form>
