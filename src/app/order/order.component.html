@@ -5,3 +5,7 @@
 <ul>
     <li *ngFor="let item of order.items">{{item.name}} x{{item.quantity}}</li>
 </ul>
+<button (click)="update()" nz-button nzType="primary">
+    Mark as {{order.status === 'PREPARING' ? 'prepared' : 'picked up'}}
+</button>
+<nz-divider></nz-divider>

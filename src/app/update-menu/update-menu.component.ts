@@ -36,11 +36,11 @@ export class UpdateMenuComponent implements OnInit {
             switch (e) {
                 case ACCESS_TOKEN_ERROR:
                     handleInvalidAccessToken(this.message);
-                    break;
+                    return;
                 case SERVER_ERROR:
                     this.message.error(SERVER_ERROR_MESSAGE);
+                    return;
             }
-            return;
         }
         this.message.success('Menu updated!');
     }

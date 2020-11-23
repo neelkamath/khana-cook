@@ -24,14 +24,14 @@ export class SignUpComponent implements OnInit {
             switch (e) {
                 case 'EXISTENT_EMAIL_ADDRESS':
                     this.message.error('Email address already registered.');
-                    break;
+                    return;
                 case 'INVALID_PASSWORD':
                     this.message.error('The password must have at least one non-whitespace character.');
-                    break;
+                    return;
                 case SERVER_ERROR:
                     this.message.error(SERVER_ERROR_MESSAGE);
+                    return;
             }
-            return;
         }
         this.message.success('Account created!');
     }

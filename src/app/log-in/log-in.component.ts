@@ -26,14 +26,14 @@ export class LogInComponent implements OnInit {
             switch (e) {
                 case 'UNREGISTERED_EMAIL_ADDRESS':
                     this.message.error('No such registered email address.');
-                    break;
+                    return;
                 case 'INCORRECT_PASSWORD':
                     this.message.error('Incorrect password.');
-                    break;
+                    return;
                 case SERVER_ERROR:
                     this.message.error(SERVER_ERROR_MESSAGE);
+                    return;
             }
-            return;
         }
         location.href = '/dashboard';
     }

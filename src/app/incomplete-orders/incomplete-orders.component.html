@@ -28,6 +28,7 @@
     <button (click)="submit()" nz-button nzType="primary" type="submit">View</button>
 </form>
 <br>
+<div *ngIf="formSubmitted && orders.length === 0">No orders to display.</div>
 <div *ngFor="let order of orders">
     <app-order [order]="order"></app-order>
 </div>

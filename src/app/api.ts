@@ -3,6 +3,9 @@ import {FoodPoint, IncompleteOrders, Menu, Role, UpdatedMenuItem} from './models
 export const SERVER_ERROR = 'SERVER_ERROR';
 export const ACCESS_TOKEN_ERROR = 'ACCESS_TOKEN_ERROR';
 export const INVALID_FOOD_POINT_ERROR = 'INVALID_FOOD_POINT_ERROR';
+export const INVALID_ORDER_UPDATE_ERROR = `The specified order ID didn't exist, it's status wasn't "PREPARING" (if the `
+    + `order's status was for it to be picked up), or it's status wasn't "PREPARED" (if the order's status was for it `
+    + `to have just been picked up).`;
 
 /**
  * @throws {string, SERVER_ERROR} <'EXISTENT_EMAIL_ADDRESS'>, or <'INVALID_PASSWORD'>.
@@ -107,6 +110,52 @@ export async function readIncompleteOrders(foodPoint: FoodPoint, accessToken: st
             return await response.json();
         case 400:
             throw INVALID_FOOD_POINT_ERROR;
+        case 401:
+            throw ACCESS_TOKEN_ERROR;
+        default:
+            throw SERVER_ERROR;
+    }
+}
+
+/**
+ * @param orderId the order which is ready to be picked up.
+ * @param accessToken The user must be a cook.
+ * @throws {INVALID_ORDER_UPDATE_ERROR, ACCESS_TOKEN_ERROR, SERVER_ERROR}
+ */
+export async function prepareOrder(orderId: string, accessToken: string): Promise<void> {
+    await updateOrder('prepare', orderId, accessToken);
+}
+
+/**
+ * @param orderId the order which was picked up.
+ * @param accessToken The user must be a cook.
+ * @throws {INVALID_ORDER_UPDATE_ERROR, ACCESS_TOKEN_ERROR, SERVER_ERROR}
+ */
+export async function pickUpOrder(orderId: string, accessToken: string): Promise<void> {
+    await updateOrder('pick-up', orderId, accessToken);
+}
+
+type OrderUpdate = 'prepare' | 'pick-up';
+
+/**
+ * @param type the type of update to perform.
+ * @param orderId the order whose status should be updated.
+ * @param accessToken The user must be a cook.
+ * @throws {INVALID_ORDER_UPDATE_ERROR, ACCESS_TOKEN_ERROR, SERVER_ERROR}
+ */
+async function updateOrder(type: OrderUpdate, orderId: string, accessToken: string): Promise<void> {
+    const params = new URLSearchParams({'order-id': orderId});
+    const response = await fetch(
+        `http://localhost/${type}-order?${params}`,
+        {
+            headers: {'Authorization': `Bearer ${accessToken}`},
+        },
+    );
+    switch (response.status) {
+        case 204:
+            return;
+        case 400:
+            throw INVALID_ORDER_UPDATE_ERROR;
         case 401:
             throw ACCESS_TOKEN_ERROR;
         default:

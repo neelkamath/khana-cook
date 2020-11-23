@@ -15,6 +15,7 @@ export class IncompleteOrdersComponent implements OnInit {
     foodPoint: FoodPoint = 'APU';
     status: OrderStatus = 'PREPARING';
     orders: IncompleteOrder[] = [];
+    formSubmitted: boolean = false;
 
     constructor(private message: NzMessageService) {
     }
@@ -35,15 +36,16 @@ export class IncompleteOrdersComponent implements OnInit {
             switch (e) {
                 case ACCESS_TOKEN_ERROR:
                     handleInvalidAccessToken(this.message);
-                    break;
+                    return;
                 case SERVER_ERROR:
                     this.message.error(SERVER_ERROR_MESSAGE);
-                    break;
+                    return;
                 case INVALID_FOOD_POINT_ERROR:
                     this.message.error(APP_ERROR_MESSAGE);
+                    return;
             }
-            return;
         }
         this.orders = response.orders.filter((order) => order.status === this.status);
+        this.formSubmitted = true;
     }
 }
