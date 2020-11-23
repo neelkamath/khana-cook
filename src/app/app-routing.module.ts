@@ -9,10 +9,10 @@ import {IncompleteOrdersComponent} from './incomplete-orders/incomplete-orders.c
 const routes: Routes = [
     {path: '', redirectTo: 'account', pathMatch: 'full'},
     {path: 'account', component: AccountComponent},
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'update-menu', component: UpdateMenuComponent},
-    {path: 'menu', component: MenuComponent},
-    {path: 'incomplete-orders', component: IncompleteOrdersComponent},
+    {path: 'cook/dashboard', component: DashboardComponent},
+    {path: 'cook/update-menu', component: UpdateMenuComponent},
+    {path: 'cook/menu', component: MenuComponent},
+    {path: 'cook/incomplete-orders', component: IncompleteOrdersComponent},
 ];
 
 @NgModule({imports: [RouterModule.forRoot(routes)], exports: [RouterModule]})

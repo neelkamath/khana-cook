@@ -1,8 +1,7 @@
 {
   "scripts": {
-    "g": "ng g",
-    "start": "ng serve --open",
-    "build": "ng build"
+    "ng": "ng",
+    "start": "ng serve --open"
   },
   "private": true,
   "dependencies": {
