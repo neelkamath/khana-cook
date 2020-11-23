@@ -1,18 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FoodPoint, MenuItem} from '../models';
 
 @Component({
     selector: 'app-sub-menu',
     templateUrl: './sub-menu.component.html',
-    styleUrls: ['./sub-menu.component.css']
+    styleUrls: ['./sub-menu.component.css'],
 })
-export class SubMenuComponent implements OnInit {
+export class SubMenuComponent {
     @Input() foodPoint: FoodPoint = 'APU';
     @Input() items: MenuItem[] = [];
-
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
 }

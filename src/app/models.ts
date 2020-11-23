@@ -40,3 +40,27 @@ export interface IncompleteOrderItem {
     readonly quantity: number;
     readonly name: string;
 }
+
+export type OrderStatus = 'PREPARING' | 'PREPARED';
+
+export type UpdateType = 'ORDER' | 'ORDER_PREPARED' | 'ORDER_PICKED_UP';
+
+export interface Update {
+    readonly type: UpdateType;
+}
+
+export interface NewOrderItem {
+    readonly id: string;
+    readonly quantity: number;
+}
+
+export interface NewOrder extends Update {
+    readonly userId: string;
+    readonly orderId: string;
+    readonly foodPoint: FoodPoint;
+    readonly items: NewOrderItem[];
+}
+
+export interface OrderStatusUpdate extends Update {
+    readonly orderId: string;
+}

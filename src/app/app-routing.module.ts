@@ -15,9 +15,6 @@ const routes: Routes = [
     {path: 'incomplete-orders', component: IncompleteOrdersComponent},
 ];
 
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-})
+@NgModule({imports: [RouterModule.forRoot(routes)], exports: [RouterModule]})
 export class AppRoutingModule {
 }

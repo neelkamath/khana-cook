@@ -148,6 +148,7 @@ async function updateOrder(type: OrderUpdate, orderId: string, accessToken: stri
     const response = await fetch(
         `http://localhost/${type}-order?${params}`,
         {
+            method: 'POST',
             headers: {'Authorization': `Bearer ${accessToken}`},
         },
     );

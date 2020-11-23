@@ -1,12 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MenuItem} from '../models';
 import {readMenu} from '../api';
 
-@Component({
-    selector: 'app-menu',
-    templateUrl: './menu.component.html',
-})
-export class MenuComponent implements OnInit {
+@Component({selector: 'app-menu', templateUrl: './menu.component.html'})
+export class MenuComponent {
     apuItems: MenuItem[] = [];
     breakfastBusItems: MenuItem[] = [];
     engBlockItems: MenuItem[] = [];
@@ -30,8 +27,5 @@ export class MenuComponent implements OnInit {
                             this.lunchBusItems.push(item);
                     }
         });
-    }
-
-    ngOnInit(): void {
     }
 }

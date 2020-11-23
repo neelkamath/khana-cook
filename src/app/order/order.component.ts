@@ -1,21 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {IncompleteOrder} from '../models';
 import {ACCESS_TOKEN_ERROR, INVALID_ORDER_UPDATE_ERROR, pickUpOrder, prepareOrder, SERVER_ERROR} from '../api';
 import {getAccessToken, handleInvalidAccessToken} from '../access-token';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../messages';
 
-@Component({
-    selector: 'app-order',
-    templateUrl: './order.component.html',
-})
-export class OrderComponent implements OnInit {
+@Component({selector: 'app-order', templateUrl: './order.component.html'})
+export class OrderComponent {
     @Input() order: IncompleteOrder = {token: '', status: 'PREPARING', price: 0, items: []};
 
     constructor(private message: NzMessageService) {
-    }
-
-    ngOnInit(): void {
     }
 
     async update(): Promise<void> {

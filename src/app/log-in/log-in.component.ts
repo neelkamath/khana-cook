@@ -1,21 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {requestAccessToken, SERVER_ERROR} from '../api';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {saveAccessToken} from '../access-token';
 import {SERVER_ERROR_MESSAGE} from '../messages';
 
-@Component({
-    selector: 'app-log-in',
-    templateUrl: './log-in.component.html'
-})
-export class LogInComponent implements OnInit {
+@Component({selector: 'app-log-in', templateUrl: './log-in.component.html'})
+export class LogInComponent {
     emailAddress: string = '';
     password: string = '';
 
     constructor(private message: NzMessageService) {
-    }
-
-    ngOnInit(): void {
     }
 
     async submit(): Promise<void> {

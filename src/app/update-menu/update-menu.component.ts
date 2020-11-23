@@ -1,15 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UpdatedMenuItem} from '../models';
 import {ACCESS_TOKEN_ERROR, SERVER_ERROR, updateMenu} from '../api';
 import {getAccessToken, handleInvalidAccessToken} from '../access-token';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {SERVER_ERROR_MESSAGE} from '../messages';
 
-@Component({
-    selector: 'app-update-menu',
-    templateUrl: './update-menu.component.html',
-})
-export class UpdateMenuComponent implements OnInit {
+@Component({selector: 'app-update-menu', templateUrl: './update-menu.component.html'})
+export class UpdateMenuComponent {
     item: UpdatedMenuItem = {
         foodPoint: 'APU',
         name: 'Bun Samosa',
@@ -19,9 +16,6 @@ export class UpdateMenuComponent implements OnInit {
     };
 
     constructor(private message: NzMessageService) {
-    }
-
-    ngOnInit(): void {
     }
 
     async submit(): Promise<void> {
