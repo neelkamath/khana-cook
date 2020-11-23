@@ -1,14 +1,6 @@
 <app-dashboard-navigator></app-dashboard-navigator>
 <h1>Menu</h1>
-<div *ngFor="let item of items">
-    <h2>{{item.name}}</h2>
-    <div *ngIf="item.picUrl">
-        <img alt="{{item.name}}" src="{{item.picUrl}}"/>
-    </div>
-    <b>Food Point:</b> {{item.foodPoint}}
-    <br>
-    <b>Remaining:</b> {{item.quantity}}
-    <br>
-    <b>Price:</b> Rs. {{item.price}}
-    <br><br><br>
-</div>
+<app-sub-menu [foodPoint]="'APU'" [items]="apuItems"></app-sub-menu>
+<app-sub-menu [foodPoint]="'Breakfast and Snacks Food Bus'" [items]="breakfastBusItems"></app-sub-menu>
+<app-sub-menu [foodPoint]="'Engineering Block'" [items]="engBlockItems"></app-sub-menu>
+<app-sub-menu [foodPoint]="'Lunch Food Bus'" [items]="lunchBusItems"></app-sub-menu>

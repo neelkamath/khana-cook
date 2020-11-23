@@ -22,3 +22,21 @@ export interface MenuItem {
     readonly price: number;
     readonly id: string;
 }
+
+export interface IncompleteOrders {
+    readonly orders: IncompleteOrder[];
+}
+
+export interface IncompleteOrder {
+    readonly token: string;
+    readonly status: IncompleteOrderStatus;
+    readonly price: number;
+    readonly items: IncompleteOrderItem[];
+}
+
+export type IncompleteOrderStatus = 'PREPARING' | 'PREPARED';
+
+export interface IncompleteOrderItem {
+    readonly quantity: number;
+    readonly name: string;
+}

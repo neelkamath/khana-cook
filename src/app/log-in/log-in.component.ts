@@ -9,7 +9,6 @@ import {SERVER_ERROR_MESSAGE} from '../messages';
     templateUrl: './log-in.component.html'
 })
 export class LogInComponent implements OnInit {
-
     emailAddress: string = '';
     password: string = '';
 
@@ -38,5 +37,4 @@ export class LogInComponent implements OnInit {
         }
         location.href = '/dashboard';
     }
-
 }

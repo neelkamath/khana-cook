@@ -1,0 +1,33 @@
+<app-dashboard-navigator></app-dashboard-navigator>
+<h1>Incomplete Orders</h1>
+<form>
+    <label>
+        Food point:
+        <br>
+        <nz-radio-group [(ngModel)]="foodPoint" name="foodPoint" required>
+            <label nz-radio nzValue="APU">APU</label>
+            <br>
+            <label nz-radio nzValue="Engineering Block">Engineering Block</label>
+            <br>
+            <label nz-radio nzValue="Breakfast and Snacks Food Bus">Breakfast and Snacks Food Bus</label>
+            <br>
+            <label nz-radio nzValue="Lunch Food Bus">Lunch Food Bus</label>
+        </nz-radio-group>
+    </label>
+    <br><br>
+    <label>
+        Type:
+        <br>
+        <nz-radio-group [(ngModel)]="status" name="status" required>
+            <label nz-radio nzValue="PREPARING">Preparing (order isn't ready to be picked up yet)</label>
+            <br>
+            <label nz-radio nzValue="PREPARED">Prepared (order is awaiting pickup)</label>
+        </nz-radio-group>
+    </label>
+    <br><br>
+    <button (click)="submit()" nz-button nzType="primary" type="submit">View</button>
+</form>
+<br>
+<div *ngFor="let order of orders">
+    <app-order [order]="order"></app-order>
+</div>

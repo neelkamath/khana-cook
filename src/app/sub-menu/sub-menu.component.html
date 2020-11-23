@@ -1,0 +1,11 @@
+<h2>{{foodPoint}}</h2>
+<div *ngIf="items.length === 0">
+    No items.
+    <br><br>
+</div>
+<div *ngFor="let item of items">
+    <h3>{{item.name}}</h3>
+    <img *ngIf="item.picUrl" alt="{{item.name}}" src="{{item.picUrl}}"/>
+    <b>Rs. {{item.price}}</b> ({{item.quantity}} left)
+    <nz-divider></nz-divider>
+</div>

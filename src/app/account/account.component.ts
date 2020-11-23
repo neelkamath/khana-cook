@@ -5,11 +5,9 @@ import {Component, OnInit} from '@angular/core';
     templateUrl: './account.component.html',
 })
 export class AccountComponent implements OnInit {
-
     constructor() {
     }
 
     ngOnInit(): void {
     }
-
 }

@@ -19,9 +19,13 @@ import {LogInComponent} from './log-in/log-in.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AccountComponent} from './account/account.component';
 import {UpdateMenuComponent} from './update-menu/update-menu.component';
+import {NzDividerModule} from 'ng-zorro-antd/divider';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {DashboardNavigatorComponent} from './dashboard-navigator/dashboard-navigator.component';
 import {MenuComponent} from './menu/menu.component';
+import {IncompleteOrdersComponent} from './incomplete-orders/incomplete-orders.component';
+import {SubMenuComponent} from './sub-menu/sub-menu.component';
+import {OrderComponent} from './order/order.component';
 
 registerLocaleData(en);
 
@@ -35,6 +39,9 @@ registerLocaleData(en);
         UpdateMenuComponent,
         DashboardNavigatorComponent,
         MenuComponent,
+        IncompleteOrdersComponent,
+        SubMenuComponent,
+        OrderComponent,
     ],
     imports: [
         BrowserModule,
@@ -49,6 +56,7 @@ registerLocaleData(en);
         NzRadioModule,
         NzIconModule,
         NzCardModule,
+        NzDividerModule,
     ],
     providers: [{provide: NZ_I18N, useValue: en_US}],
     bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AccountComponent} from './account/account.component';
 import {UpdateMenuComponent} from './update-menu/update-menu.component';
 import {MenuComponent} from './menu/menu.component';
+import {IncompleteOrdersComponent} from './incomplete-orders/incomplete-orders.component';
 
 const routes: Routes = [
     {path: '', redirectTo: 'account', pathMatch: 'full'},
@@ -11,11 +12,12 @@ const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'update-menu', component: UpdateMenuComponent},
     {path: 'menu', component: MenuComponent},
+    {path: 'incomplete-orders', component: IncompleteOrdersComponent},
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

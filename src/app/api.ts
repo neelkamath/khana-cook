@@ -1,7 +1,8 @@
-import {Menu, Role, UpdatedMenuItem} from './models';
+import {FoodPoint, IncompleteOrders, Menu, Role, UpdatedMenuItem} from './models';
 
 export const SERVER_ERROR = 'SERVER_ERROR';
 export const ACCESS_TOKEN_ERROR = 'ACCESS_TOKEN_ERROR';
+export const INVALID_FOOD_POINT_ERROR = 'INVALID_FOOD_POINT_ERROR';
 
 /**
  * @throws {string, SERVER_ERROR} <'EXISTENT_EMAIL_ADDRESS'>, or <'INVALID_PASSWORD'>.
@@ -82,6 +83,32 @@ export async function readMenu(): Promise<Menu> {
     switch (response.status) {
         case 200:
             return await response.json();
+        default:
+            throw SERVER_ERROR;
+    }
+}
+
+/**
+ * @param foodPoint Incomplete orders from this food point will be returned.
+ * @param accessToken The user must be a cook.
+ * @throws {ACCESS_TOKEN_ERROR, SERVER_ERROR, INVALID_FOOD_POINT_ERROR} An <INVALID_FOOD_POINT_ERROR> will be thrown if
+ * the <foodPoint> isn't a <FoodPoint>.
+ */
+export async function readIncompleteOrders(foodPoint: FoodPoint, accessToken: string): Promise<IncompleteOrders> {
+    const params = new URLSearchParams({'food-point': foodPoint});
+    const response = await fetch(
+        `http://localhost/incomplete-orders?${params}`,
+        {
+            headers: {'Authorization': `Bearer ${accessToken}`},
+        }
+    );
+    switch (response.status) {
+        case 200:
+            return await response.json();
+        case 400:
+            throw INVALID_FOOD_POINT_ERROR;
+        case 401:
+            throw ACCESS_TOKEN_ERROR;
         default:
             throw SERVER_ERROR;
     }

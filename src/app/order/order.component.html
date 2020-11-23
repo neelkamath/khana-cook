@@ -1,0 +1,7 @@
+<h2>Order {{order.token}}</h2>
+<b>Total:</b> Rs. {{order.price}}
+<br>
+<b>Items:</b>
+<ul>
+    <li *ngFor="let item of order.items">{{item.name}} x{{item.quantity}}</li>
+</ul>

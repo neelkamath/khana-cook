@@ -10,7 +10,6 @@ import {SERVER_ERROR_MESSAGE} from '../messages';
     templateUrl: './update-menu.component.html',
 })
 export class UpdateMenuComponent implements OnInit {
-
     item: UpdatedMenuItem = {
         foodPoint: 'APU',
         name: 'Bun Samosa',
@@ -45,5 +44,4 @@ export class UpdateMenuComponent implements OnInit {
         }
         this.message.success('Menu updated!');
     }
-
 }

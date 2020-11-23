@@ -8,7 +8,6 @@ import {SERVER_ERROR_MESSAGE} from '../messages';
     templateUrl: './sign-up.component.html',
 })
 export class SignUpComponent implements OnInit {
-
     emailAddress: string = '';
     password: string = '';
 
@@ -36,5 +35,4 @@ export class SignUpComponent implements OnInit {
         }
         this.message.success('Account created!');
     }
-
 }
