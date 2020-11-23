@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {UpdatedMenuItem} from '../models';
-import {ACCESS_TOKEN_ERROR, SERVER_ERROR, updateMenu} from '../api';
-import {getAccessToken, handleInvalidAccessToken} from '../access-token';
+import {UpdatedMenuItem} from '../../common/models';
+import {ACCESS_TOKEN_ERROR, SERVER_ERROR, updateMenu} from '../../common/api';
+import {getAccessToken, handleInvalidAccessToken} from '../../common/access-token';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {SERVER_ERROR_MESSAGE} from '../messages';
+import {SERVER_ERROR_MESSAGE} from '../../common/messages';
 
 @Component({selector: 'app-update-menu', templateUrl: './update-menu.component.html'})
 export class UpdateMenuComponent {

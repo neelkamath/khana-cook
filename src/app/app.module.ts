@@ -14,18 +14,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {en_US, NZ_I18N} from 'ng-zorro-antd/i18n';
 import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
-import {SignUpComponent} from './sign-up/sign-up.component';
-import {LogInComponent} from './log-in/log-in.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {AccountComponent} from './account/account.component';
-import {UpdateMenuComponent} from './update-menu/update-menu.component';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
 import {NzIconModule} from 'ng-zorro-antd/icon';
-import {DashboardNavigatorComponent} from './dashboard-navigator/dashboard-navigator.component';
-import {MenuComponent} from './menu/menu.component';
-import {IncompleteOrdersComponent} from './incomplete-orders/incomplete-orders.component';
-import {SubMenuComponent} from './sub-menu/sub-menu.component';
-import {OrderComponent} from './order/order.component';
+import {SignUpComponent} from './common/sign-up/sign-up.component';
+import {LogInComponent} from './common/log-in/log-in.component';
+import {DashboardComponent} from './cook/dashboard/dashboard.component';
+import {AccountComponent} from './common/account/account.component';
+import {UpdateMenuComponent} from './cook/update-menu/update-menu.component';
+import {MenuComponent} from './cook/menu/menu.component';
+import {DashboardNavigatorComponent} from './cook/dashboard-navigator/dashboard-navigator.component';
+import {IncompleteOrdersComponent} from './cook/incomplete-orders/incomplete-orders.component';
+import {SubMenuComponent} from './cook/sub-menu/sub-menu.component';
+import {OrderComponent} from './cook/order/order.component';
 
 registerLocaleData(en);
 

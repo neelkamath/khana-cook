@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {MenuItem} from '../models';
-import {readMenu} from '../api';
+import {MenuItem} from '../../common/models';
+import {readMenu} from '../../common/api';
 
 @Component({selector: 'app-menu', templateUrl: './menu.component.html'})
 export class MenuComponent {

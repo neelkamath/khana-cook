@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {AccountComponent} from './account/account.component';
-import {UpdateMenuComponent} from './update-menu/update-menu.component';
-import {MenuComponent} from './menu/menu.component';
-import {IncompleteOrdersComponent} from './incomplete-orders/incomplete-orders.component';
+import {DashboardComponent} from './cook/dashboard/dashboard.component';
+import {AccountComponent} from './common/account/account.component';
+import {UpdateMenuComponent} from './cook/update-menu/update-menu.component';
+import {MenuComponent} from './cook/menu/menu.component';
+import {IncompleteOrdersComponent} from './cook/incomplete-orders/incomplete-orders.component';
 
 const routes: Routes = [
     {path: '', redirectTo: 'account', pathMatch: 'full'},

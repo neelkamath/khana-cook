@@ -29,6 +29,6 @@ export class LogInComponent {
                     return;
             }
         }
-        location.href = '/dashboard';
+        location.href = '/cook/dashboard';
     }
 }

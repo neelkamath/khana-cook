@@ -1,9 +1,15 @@
 import {Component, Input} from '@angular/core';
-import {IncompleteOrder} from '../models';
-import {ACCESS_TOKEN_ERROR, INVALID_ORDER_UPDATE_ERROR, pickUpOrder, prepareOrder, SERVER_ERROR} from '../api';
-import {getAccessToken, handleInvalidAccessToken} from '../access-token';
+import {
+    ACCESS_TOKEN_ERROR,
+    INVALID_ORDER_UPDATE_ERROR,
+    pickUpOrder,
+    prepareOrder,
+    SERVER_ERROR
+} from '../../common/api';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../messages';
+import {IncompleteOrder} from '../../common/models';
+import {getAccessToken, handleInvalidAccessToken} from '../../common/access-token';
+import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../../common/messages';
 
 @Component({selector: 'app-order', templateUrl: './order.component.html'})
 export class OrderComponent {

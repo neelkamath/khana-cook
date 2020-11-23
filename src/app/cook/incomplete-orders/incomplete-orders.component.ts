@@ -1,9 +1,15 @@
 import {Component, OnDestroy} from '@angular/core';
-import {ACCESS_TOKEN_ERROR, INVALID_FOOD_POINT_ERROR, readIncompleteOrders, readMenu, SERVER_ERROR} from '../api';
-import {getAccessToken, handleInvalidAccessToken} from '../access-token';
+import {
+    ACCESS_TOKEN_ERROR,
+    INVALID_FOOD_POINT_ERROR,
+    readIncompleteOrders,
+    readMenu,
+    SERVER_ERROR
+} from '../../common/api';
+import {getAccessToken, handleInvalidAccessToken} from '../../common/access-token';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {FoodPoint, IncompleteOrder, NewOrder, OrderStatus} from '../models';
-import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../messages';
+import {FoodPoint, IncompleteOrder, NewOrder, OrderStatus} from '../../common/models';
+import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../../common/messages';
 
 @Component({selector: 'app-incomplete-orders', templateUrl: './incomplete-orders.component.html'})
 export class IncompleteOrdersComponent implements OnDestroy {

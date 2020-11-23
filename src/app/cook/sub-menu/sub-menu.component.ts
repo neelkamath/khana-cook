@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FoodPoint, MenuItem} from '../models';
+import {FoodPoint, MenuItem} from '../../common/models';
 
 @Component({
     selector: 'app-sub-menu',
