@@ -1,11 +1,13 @@
 <h2>Sign Up</h2>
 <form>
     <label>
-        Email address: <input [(ngModel)]="emailAddress" name="emailAddress" nz-input required type="email">
+        Email address:
+        <input [(ngModel)]="emailAddress" autocomplete="username" name="emailAddress" nz-input required type="email">
     </label>
     <br><br>
     <label>
-        Password: <input [(ngModel)]="password" name="password" nz-input required type="password">
+        Password:
+        <input [(ngModel)]="password" autocomplete="current-password" name="password" nz-input required type="password">
     </label>
     <br><br>
     <button (click)="submit()" nz-button nzType="primary" type="submit">Sign up</button>

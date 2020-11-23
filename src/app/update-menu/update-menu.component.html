@@ -1,0 +1,39 @@
+<app-dashboard-navigator></app-dashboard-navigator>
+<br><br>
+<h1>Update Menu</h1>
+<b>If the item name already exists, it'll be replaced.</b>
+<br><br>
+<form>
+    <label>
+        Food point this item is available at:
+        <br>
+        <nz-radio-group [(ngModel)]="item.foodPoint" name="food-point" required>
+            <label nz-radio nzValue="APU">APU</label>
+            <br>
+            <label nz-radio nzValue="Engineering Block">Engineering Block</label>
+            <br>
+            <label nz-radio nzValue="Breakfast and Snacks Food Bus">Breakfast and Snacks Food Bus</label>
+            <br>
+            <label nz-radio nzValue="Lunch Food Bus">Lunch Food Bus</label>
+        </nz-radio-group>
+    </label>
+    <br><br>
+    <label>
+        Item name: <input [(ngModel)]="item.name" name="name" nz-input required>
+    </label>
+    <br><br>
+    <label>
+        Pic URL: <input [(ngModel)]="item.picUrl" name="pic-url" nz-input type="url">
+    </label>
+    <br><br>
+    <label>
+        Quantity available today:
+        <input [(ngModel)]="item.quantity" min="1" name="quantity" nz-input required type="number">
+    </label>
+    <br><br>
+    <label>
+        Price: <input [(ngModel)]="item.price" name="price" nz-input required type="number">
+    </label>
+    <br><br>
+    <button (click)="submit()" nz-button nzType="primary" type="submit">Update menu</button>
+</form>

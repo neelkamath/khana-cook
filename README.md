@@ -4,7 +4,7 @@ Frontend UI used by cooks for [Khana](https://github.com/neelkamath/khana-backen
 
 ## Installation
 
-1. Install the [backend](https://github.com/neelkamath/khana-backend).
+1. Install the [backend](https://github.com/neelkamath/khana-backend#installation).
 1. Install [node.js 14](https://nodejs.org/en/download/).
 1. Clone the repo using one of the following methods:
     - SSH: `git clone git@github.com:neelkamath/khana-cook.git`
@@ -22,7 +22,7 @@ Frontend UI used by cooks for [Khana](https://github.com/neelkamath/khana-backen
     
 ## Contributing
 
-The access token gets stored in `localStorage` under the key `accessToken`.
+The access token gets saved under the key `accessToken` in `localStorage`.
 
 ## License
 

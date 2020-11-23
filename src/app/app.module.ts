@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+import {NzRadioModule} from 'ng-zorro-antd/radio';
 import {NzMessageModule} from 'ng-zorro-antd/message';
 import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzButtonModule} from 'ng-zorro-antd/button';
@@ -16,6 +17,9 @@ import {SignUpComponent} from './sign-up/sign-up.component';
 import {LogInComponent} from './log-in/log-in.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AccountComponent} from './account/account.component';
+import {UpdateMenuComponent} from './update-menu/update-menu.component';
+import {NzIconModule} from 'ng-zorro-antd/icon';
+import {DashboardNavigatorComponent} from './dashboard-navigator/dashboard-navigator.component';
 
 registerLocaleData(en);
 
@@ -26,6 +30,8 @@ registerLocaleData(en);
         LogInComponent,
         DashboardComponent,
         AccountComponent,
+        UpdateMenuComponent,
+        DashboardNavigatorComponent,
     ],
     imports: [
         BrowserModule,
@@ -37,6 +43,8 @@ registerLocaleData(en);
         NzInputModule,
         ReactiveFormsModule,
         NzMessageModule,
+        NzRadioModule,
+        NzIconModule,
     ],
     providers: [{provide: NZ_I18N, useValue: en_US}],
     bootstrap: [AppComponent]
