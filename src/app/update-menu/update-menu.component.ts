@@ -14,7 +14,7 @@ export class UpdateMenuComponent implements OnInit {
     item: UpdatedMenuItem = {
         foodPoint: 'APU',
         name: 'Bun Samosa',
-        picUrl: 'https://github.com/neelkamath/khana-backend/blob/master/docs/sandwich.jpg',
+        picUrl: 'https://github.com/neelkamath/khana-backend/raw/master/docs/sandwich.jpg',
         quantity: 50,
         price: 20,
     };

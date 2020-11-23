@@ -9,3 +9,16 @@ export interface UpdatedMenuItem {
     quantity: number;
     price: number;
 }
+
+export interface Menu {
+    readonly items: MenuItem[];
+}
+
+export interface MenuItem {
+    readonly foodPoint: FoodPoint;
+    readonly name: string;
+    readonly picUrl?: string;
+    readonly quantity: number;
+    readonly price: number;
+    readonly id: string;
+}

@@ -1,4 +1,4 @@
-import {Role, UpdatedMenuItem} from './models';
+import {Menu, Role, UpdatedMenuItem} from './models';
 
 export const SERVER_ERROR = 'SERVER_ERROR';
 export const ACCESS_TOKEN_ERROR = 'ACCESS_TOKEN_ERROR';
@@ -69,6 +69,19 @@ export async function updateMenu(item: UpdatedMenuItem, accessToken: string): Pr
             return;
         case 401:
             throw ACCESS_TOKEN_ERROR;
+        default:
+            throw SERVER_ERROR;
+    }
+}
+
+/**
+ * @throws {SERVER_ERROR}
+ */
+export async function readMenu(): Promise<Menu> {
+    const response = await fetch('http://localhost/read-menu');
+    switch (response.status) {
+        case 200:
+            return await response.json();
         default:
             throw SERVER_ERROR;
     }
