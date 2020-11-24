@@ -26,6 +26,10 @@ import {DashboardNavigatorComponent} from './cook/dashboard-navigator/dashboard-
 import {IncompleteOrdersComponent} from './cook/incomplete-orders/incomplete-orders.component';
 import {SubMenuComponent} from './cook/sub-menu/sub-menu.component';
 import {OrderComponent} from './cook/order/order.component';
+import {HomeComponent} from './student/home/home.component';
+import {OrdersComponent} from './student/orders/orders.component';
+import {HomeNavigatorComponent} from './student/home-navigator/home-navigator.component';
+import {StudentOrderComponent} from './student/student-order/student-order.component';
 
 registerLocaleData(en);
 
@@ -40,8 +44,12 @@ registerLocaleData(en);
         DashboardNavigatorComponent,
         MenuComponent,
         IncompleteOrdersComponent,
+        HomeComponent,
         SubMenuComponent,
         OrderComponent,
+        OrdersComponent,
+        HomeNavigatorComponent,
+        StudentOrderComponent,
     ],
     imports: [
         BrowserModule,

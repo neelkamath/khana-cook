@@ -1,19 +1,21 @@
 import {Component} from '@angular/core';
-import {createAccount, SERVER_ERROR} from '../api';
+import {postCreateAccount, SERVER_ERROR} from '../api';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {SERVER_ERROR_MESSAGE} from '../messages';
+import {Role} from '../models';
 
 @Component({selector: 'app-sign-up', templateUrl: './sign-up.component.html'})
 export class SignUpComponent {
     emailAddress: string = '';
     password: string = '';
+    type: Role = 'student';
 
     constructor(private message: NzMessageService) {
     }
 
     async submit(): Promise<void> {
         try {
-            await createAccount(this.emailAddress, this.password, 'cook');
+            await postCreateAccount(this.emailAddress, this.password, this.type);
         } catch (e) {
             switch (e) {
                 case 'EXISTENT_EMAIL_ADDRESS':

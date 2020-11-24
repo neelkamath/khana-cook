@@ -1,20 +1,22 @@
 import {Component} from '@angular/core';
-import {requestAccessToken, SERVER_ERROR} from '../api';
+import {postRequestAccessToken, SERVER_ERROR} from '../api';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {saveAccessToken} from '../access-token';
+import {getAccessTokenRole, saveAccessToken} from '../access-token';
 import {SERVER_ERROR_MESSAGE} from '../messages';
+import {Role} from '../models';
 
 @Component({selector: 'app-log-in', templateUrl: './log-in.component.html'})
 export class LogInComponent {
     emailAddress: string = '';
     password: string = '';
+    type: Role = 'student';
 
     constructor(private message: NzMessageService) {
     }
 
     async submit(): Promise<void> {
         try {
-            const token = await requestAccessToken(this.emailAddress, this.password);
+            const token = await postRequestAccessToken(this.emailAddress, this.password);
             saveAccessToken(token);
         } catch (e) {
             switch (e) {
@@ -29,6 +31,12 @@ export class LogInComponent {
                     return;
             }
         }
-        location.href = '/cook/dashboard';
+        switch (getAccessTokenRole()) {
+            case 'cook':
+                location.href = '/cook/dashboard';
+                break;
+            case 'student':
+                location.href = '/student/home';
+        }
     }
 }

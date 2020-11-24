@@ -1,0 +1,9 @@
+<h3>Order {{order.token}}</h3>
+<b>{{order.foodPoint}}</b>
+<ul>
+    <li *ngFor="let item of order.items">
+        {{item.quantity}} × <b>{{item.name}}</b> = Rs. {{item.quantity * item.price}}
+    </li>
+</ul>
+<b>Total:</b> Rs. {{order.price}}
+<nz-divider></nz-divider>

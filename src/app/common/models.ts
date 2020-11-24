@@ -41,7 +41,7 @@ export interface IncompleteOrderItem {
     readonly name: string;
 }
 
-export type OrderStatus = 'PREPARING' | 'PREPARED';
+export type OrderStatus = 'PREPARING' | 'PREPARED' | 'PICKED_UP';
 
 export type UpdateType = 'ORDER' | 'ORDER_PREPARED' | 'ORDER_PICKED_UP';
 
@@ -63,4 +63,22 @@ export interface NewOrder extends Update {
 
 export interface OrderStatusUpdate extends Update {
     readonly orderId: string;
+}
+
+export interface PlacedOrders {
+    readonly orders: PlacedOrder[];
+}
+
+export interface PlacedOrder {
+    readonly token: string;
+    readonly status: OrderStatus;
+    readonly foodPoint: FoodPoint;
+    readonly items: PlacedOrderItem[];
+    readonly price: number;
+}
+
+export interface PlacedOrderItem {
+    readonly quantity: number;
+    readonly price: number;
+    readonly name: string;
 }

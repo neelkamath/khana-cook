@@ -1,0 +1,26 @@
+<app-home-navigator></app-home-navigator>
+<h1>Orders</h1>
+<h2>Ready for Pickup</h2>
+<span *ngIf="preparedOrders.length === 0">
+    No orders.
+    <br><br>
+</span>
+<div *ngFor="let order of preparedOrders">
+    <app-student-order [order]="order"></app-student-order>
+</div>
+<h2>Not Ready to Be Picked Up</h2>
+<span *ngIf="preparingOrders.length === 0">
+    No orders.
+    <br><br>
+</span>
+<div *ngFor="let order of preparingOrders">
+    <app-student-order [order]="order"></app-student-order>
+</div>
+<h2>Picked Up</h2>
+<span *ngIf="pickedUpOrders.length === 0">
+    No orders.
+    <br><br>
+</span>
+<div *ngFor="let order of pickedUpOrders">
+    <app-student-order [order]="order"></app-student-order>
+</div>

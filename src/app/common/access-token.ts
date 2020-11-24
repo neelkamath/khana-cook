@@ -1,5 +1,7 @@
 import {ACCESS_TOKEN_ERROR_MESSAGE} from './messages';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {Role} from './models';
+import jwtDecode from 'jwt-decode';
 
 /**
  * Redirects to the "/account" page.
@@ -23,4 +25,25 @@ export function saveAccessToken(token: string): void {
  */
 export function getAccessToken(): string | null {
     return localStorage.getItem('accessToken');
+}
+
+/**
+ * @return the role of the access token (assumed to have been saved).
+ */
+export function getAccessTokenRole(): Role {
+    return jwtDecode<Jwt>(getAccessToken()!).role;
+}
+
+/**
+ * @return the user ID of the access token (assumed to have been saved).
+ */
+export function getAccessTokenUserId(): string {
+    return jwtDecode<Jwt>(getAccessToken()!).userId;
+}
+
+interface Jwt {
+    readonly userId: string;
+    readonly role: Role;
+    readonly iat: number;
+    readonly exp: number;
 }

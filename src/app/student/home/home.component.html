@@ -1,0 +1,21 @@
+<h1>Home</h1>
+<a href="/account">
+    <button nz-button nzType="primary">
+        <i nz-icon nzTheme="outline" nzType="account-book"></i> Sign in to a different account
+    </button>
+</a>
+<br><br>
+<a href="/student/orders">
+    <button nz-button nzType="primary">
+        <i nz-icon nzTheme="outline" nzType="dollar-circle"></i> View orders
+    </button>
+</a>
+<br><br><br><br>
+<span *ngFor="let foodPoint of ['APU', 'Engineering Block', 'Breakfast and Snacks Food Bus', 'Lunch Food Bus']">
+    <a href="/student/menus?food-point={{foodPoint}}">
+        <button nz-button nzType="primary">
+            <i nz-icon nzTheme="outline" nzType="build"></i> {{foodPoint}} menu
+        </button>
+    </a>
+    <br><br>
+</span>

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MenuItem} from '../../common/models';
-import {readMenu} from '../../common/api';
+import {getReadMenu} from '../../common/api';
 
 @Component({selector: 'app-menu', templateUrl: './menu.component.html'})
 export class MenuComponent {
@@ -10,7 +10,7 @@ export class MenuComponent {
     lunchBusItems: MenuItem[] = [];
 
     constructor() {
-        readMenu().then((menu) => {
+        getReadMenu().then((menu) => {
             for (const item of menu.items)
                 if (item.quantity > 0)
                     switch (item.foodPoint) {

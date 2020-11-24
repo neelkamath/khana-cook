@@ -1,20 +1,20 @@
 import {Component, OnDestroy} from '@angular/core';
 import {
     ACCESS_TOKEN_ERROR,
+    getReadIncompleteOrders,
+    getReadMenu,
     INVALID_FOOD_POINT_ERROR,
-    readIncompleteOrders,
-    readMenu,
     SERVER_ERROR
 } from '../../common/api';
 import {getAccessToken, handleInvalidAccessToken} from '../../common/access-token';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {FoodPoint, IncompleteOrder, NewOrder, OrderStatus} from '../../common/models';
+import {FoodPoint, IncompleteOrder, IncompleteOrderStatus, NewOrder} from '../../common/models';
 import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../../common/messages';
 
 @Component({selector: 'app-incomplete-orders', templateUrl: './incomplete-orders.component.html'})
 export class IncompleteOrdersComponent implements OnDestroy {
     foodPoint: FoodPoint = 'APU';
-    status: OrderStatus = 'PREPARING';
+    status: IncompleteOrderStatus = 'PREPARING';
     orders: IncompleteOrder[] = [];
     formSubmitted: boolean = false;
     private readonly socket: WebSocket;
@@ -50,7 +50,7 @@ export class IncompleteOrdersComponent implements OnDestroy {
 
     async handleOrder(newOrder: NewOrder): Promise<void> {
         const asyncItems = newOrder.items.map(async (orderItem) => {
-            const menu = await readMenu();
+            const menu = await getReadMenu();
             const {name, price} = menu.items.find((menuItem) => menuItem.id === orderItem.id)!;
             return {name, price, quantity: orderItem.quantity};
         });
@@ -76,7 +76,7 @@ export class IncompleteOrdersComponent implements OnDestroy {
             return;
         }
         try {
-            const response = await readIncompleteOrders(this.foodPoint, token);
+            const response = await getReadIncompleteOrders(this.foodPoint, token);
             this.orders = response.orders.filter((order) => order.status === this.status);
             this.formSubmitted = true;
         } catch (e) {

@@ -1,4 +1,4 @@
-import {FoodPoint, IncompleteOrders, Menu, Role, UpdatedMenuItem} from './models';
+import {FoodPoint, IncompleteOrders, Menu, PlacedOrders, Role, UpdatedMenuItem} from './models';
 
 export const SERVER_ERROR = 'SERVER_ERROR';
 export const ACCESS_TOKEN_ERROR = 'ACCESS_TOKEN_ERROR';
@@ -10,7 +10,7 @@ export const INVALID_ORDER_UPDATE_ERROR = `The specified order ID didn't exist, 
 /**
  * @throws {string, SERVER_ERROR} <'EXISTENT_EMAIL_ADDRESS'>, or <'INVALID_PASSWORD'>.
  */
-export async function createAccount(emailAddress: string, password: string, role: Role): Promise<void> {
+export async function postCreateAccount(emailAddress: string, password: string, role: Role): Promise<void> {
     const response = await fetch(
         'http://localhost/create-account',
         {
@@ -34,7 +34,7 @@ export async function createAccount(emailAddress: string, password: string, role
  * @return a JWT which expires in one hour.
  * @throws {string, SERVER_ERROR} <'UNREGISTERED_EMAIL_ADDRESS'>, or <'INCORRECT_PASSWORD'>.
  */
-export async function requestAccessToken(emailAddress: string, password: string): Promise<string> {
+export async function postRequestAccessToken(emailAddress: string, password: string): Promise<string> {
     const response = await fetch(
         'http://localhost/request-access-token',
         {
@@ -59,7 +59,7 @@ export async function requestAccessToken(emailAddress: string, password: string)
  * @param accessToken The user must be a cook to perform this action.
  * @throws {ACCESS_TOKEN_ERROR, SERVER_ERROR}
  */
-export async function updateMenu(item: UpdatedMenuItem, accessToken: string): Promise<void> {
+export async function postUpdateMenu(item: UpdatedMenuItem, accessToken: string): Promise<void> {
     const response = await fetch(
         'http://localhost/update-menu',
         {
@@ -81,7 +81,7 @@ export async function updateMenu(item: UpdatedMenuItem, accessToken: string): Pr
 /**
  * @throws {SERVER_ERROR}
  */
-export async function readMenu(): Promise<Menu> {
+export async function getReadMenu(): Promise<Menu> {
     const response = await fetch('http://localhost/read-menu');
     switch (response.status) {
         case 200:
@@ -97,7 +97,7 @@ export async function readMenu(): Promise<Menu> {
  * @throws {ACCESS_TOKEN_ERROR, SERVER_ERROR, INVALID_FOOD_POINT_ERROR} An <INVALID_FOOD_POINT_ERROR> will be thrown if
  * the <foodPoint> isn't a <FoodPoint>.
  */
-export async function readIncompleteOrders(foodPoint: FoodPoint, accessToken: string): Promise<IncompleteOrders> {
+export async function getReadIncompleteOrders(foodPoint: FoodPoint, accessToken: string): Promise<IncompleteOrders> {
     const params = new URLSearchParams({'food-point': foodPoint});
     const response = await fetch(
         `http://localhost/incomplete-orders?${params}`,
@@ -122,7 +122,7 @@ export async function readIncompleteOrders(foodPoint: FoodPoint, accessToken: st
  * @param accessToken The user must be a cook.
  * @throws {INVALID_ORDER_UPDATE_ERROR, ACCESS_TOKEN_ERROR, SERVER_ERROR}
  */
-export async function prepareOrder(orderId: string, accessToken: string): Promise<void> {
+export async function postPrepareOrder(orderId: string, accessToken: string): Promise<void> {
     await updateOrder('prepare', orderId, accessToken);
 }
 
@@ -131,7 +131,7 @@ export async function prepareOrder(orderId: string, accessToken: string): Promis
  * @param accessToken The user must be a cook.
  * @throws {INVALID_ORDER_UPDATE_ERROR, ACCESS_TOKEN_ERROR, SERVER_ERROR}
  */
-export async function pickUpOrder(orderId: string, accessToken: string): Promise<void> {
+export async function postPickUpOrder(orderId: string, accessToken: string): Promise<void> {
     await updateOrder('pick-up', orderId, accessToken);
 }
 
@@ -157,6 +157,27 @@ async function updateOrder(type: OrderUpdate, orderId: string, accessToken: stri
             return;
         case 400:
             throw INVALID_ORDER_UPDATE_ERROR;
+        case 401:
+            throw ACCESS_TOKEN_ERROR;
+        default:
+            throw SERVER_ERROR;
+    }
+}
+
+/**
+ * @param accessToken The token of the user whose orders are to be retrieved.
+ * @throws {ACCESS_TOKEN_ERROR, SERVER_ERROR}
+ */
+export async function getOrders(accessToken: string): Promise<PlacedOrders> {
+    const response = await fetch(
+        `http://localhost/orders`,
+        {
+            headers: {'Authorization': `Bearer ${accessToken}`},
+        },
+    );
+    switch (response.status) {
+        case 200:
+            return await response.json();
         case 401:
             throw ACCESS_TOKEN_ERROR;
         default:

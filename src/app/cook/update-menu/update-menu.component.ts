@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UpdatedMenuItem} from '../../common/models';
-import {ACCESS_TOKEN_ERROR, SERVER_ERROR, updateMenu} from '../../common/api';
+import {ACCESS_TOKEN_ERROR, postUpdateMenu, SERVER_ERROR} from '../../common/api';
 import {getAccessToken, handleInvalidAccessToken} from '../../common/access-token';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {SERVER_ERROR_MESSAGE} from '../../common/messages';
@@ -25,7 +25,7 @@ export class UpdateMenuComponent {
             return;
         }
         try {
-            await updateMenu(this.item, token);
+            await postUpdateMenu(this.item, token);
         } catch (e) {
             switch (e) {
                 case ACCESS_TOKEN_ERROR:

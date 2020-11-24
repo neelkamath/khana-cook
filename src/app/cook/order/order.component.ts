@@ -2,8 +2,8 @@ import {Component, Input} from '@angular/core';
 import {
     ACCESS_TOKEN_ERROR,
     INVALID_ORDER_UPDATE_ERROR,
-    pickUpOrder,
-    prepareOrder,
+    postPickUpOrder,
+    postPrepareOrder,
     SERVER_ERROR
 } from '../../common/api';
 import {NzMessageService} from 'ng-zorro-antd/message';
@@ -27,10 +27,10 @@ export class OrderComponent {
         try {
             switch (this.order.status) {
                 case 'PREPARING':
-                    await prepareOrder(this.order.token, token);
+                    await postPrepareOrder(this.order.token, token);
                     break;
                 case 'PREPARED':
-                    await pickUpOrder(this.order.token, token);
+                    await postPickUpOrder(this.order.token, token);
             }
         } catch (e) {
             switch (e) {

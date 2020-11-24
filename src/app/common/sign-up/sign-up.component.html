@@ -10,5 +10,14 @@
         <input [(ngModel)]="password" autocomplete="current-password" name="password" nz-input required type="password">
     </label>
     <br><br>
+    <label>
+        Type:
+        <br>
+        <nz-radio-group [(ngModel)]="type" name="type" required>
+            <label nz-radio nzValue="student">Student</label>
+            <label nz-radio nzValue="cook">Cook</label>
+        </nz-radio-group>
+    </label>
+    <br><br>
     <button (click)="submit()" nz-button nzType="primary" type="submit">Sign up</button>
 </form>
