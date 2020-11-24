@@ -1,12 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {FoodPoint, MenuItem} from '../../common/models';
 
-@Component({
-    selector: 'app-sub-menu',
-    templateUrl: './sub-menu.component.html',
-    styleUrls: ['./sub-menu.component.css'],
-})
+@Component({selector: 'app-sub-menu', templateUrl: './sub-menu.component.html'})
 export class SubMenuComponent {
-    @Input() foodPoint: FoodPoint = 'APU';
-    @Input() items: MenuItem[] = [];
+    // @ts-ignore: Property 'foodPoint' has no initializer and is not definitely assigned in the constructor.
+    @Input() foodPoint: FoodPoint;
+    // @ts-ignore: Property 'items' has no initializer and is not definitely assigned in the constructor.
+    @Input() items: MenuItem[];
 }

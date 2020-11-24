@@ -1,4 +1,4 @@
-import {FoodPoint, IncompleteOrders, Menu, PlacedOrders, Role, UpdatedMenuItem} from './models';
+import {FoodPoint, IncompleteOrders, Menu, NewOrder, PlacedOrders, Role, UpdatedMenuItem} from './models';
 
 export const SERVER_ERROR = 'SERVER_ERROR';
 export const ACCESS_TOKEN_ERROR = 'ACCESS_TOKEN_ERROR';
@@ -6,6 +6,7 @@ export const INVALID_FOOD_POINT_ERROR = 'INVALID_FOOD_POINT_ERROR';
 export const INVALID_ORDER_UPDATE_ERROR = `The specified order ID didn't exist, it's status wasn't "PREPARING" (if the `
     + `order's status was for it to be picked up), or it's status wasn't "PREPARED" (if the order's status was for it `
     + `to have just been picked up).`;
+export const INVALID_ORDER_ERROR = 'INVALID_ORDER_ERROR';
 
 /**
  * @throws {string, SERVER_ERROR} <'EXISTENT_EMAIL_ADDRESS'>, or <'INVALID_PASSWORD'>.
@@ -165,7 +166,7 @@ async function updateOrder(type: OrderUpdate, orderId: string, accessToken: stri
 }
 
 /**
- * @param accessToken The token of the user whose orders are to be retrieved.
+ * @param accessToken The token of the student whose orders are to be retrieved.
  * @throws {ACCESS_TOKEN_ERROR, SERVER_ERROR}
  */
 export async function getOrders(accessToken: string): Promise<PlacedOrders> {
@@ -178,6 +179,36 @@ export async function getOrders(accessToken: string): Promise<PlacedOrders> {
     switch (response.status) {
         case 200:
             return await response.json();
+        case 401:
+            throw ACCESS_TOKEN_ERROR;
+        default:
+            throw SERVER_ERROR;
+    }
+}
+
+/**
+ * @param accessToken A student's token.
+ * @param order
+ * @return the order ID.
+ * @throws {INVALID_ORDER_ERROR, ACCESS_TOKEN_ERROR, SERVER_ERROR} An <INVALID_ORDER_ERROR> gets thrown when ordering
+ * an item in a quantity unavailable (e.g., ordering three lemonades when only two are in stock).
+ */
+export async function postOrder(accessToken: string, order: NewOrder): Promise<string> {
+    const response = await fetch(
+        'http://localhost/order',
+        {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}`},
+            body: JSON.stringify({...order}),
+        },
+    );
+    switch (response.status) {
+        case 200:
+        case 400:
+            const body = await response.json();
+            if (response.status === 400 && body.reason === 'INVALID_ITEM') throw INVALID_ORDER_ERROR;
+            if (response.status === 200) return body.token;
+            throw SERVER_ERROR;
         case 401:
             throw ACCESS_TOKEN_ERROR;
         default:

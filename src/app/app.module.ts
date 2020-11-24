@@ -29,7 +29,11 @@ import {HomeComponent} from './student/home/home.component';
 import {OrdersComponent} from './student/orders/orders.component';
 import {HomeNavigatorComponent} from './student/home-navigator/home-navigator.component';
 import {StudentOrderComponent} from './student/student-order/student-order.component';
-import {MenuComponent} from './common/menu/menu.component';
+import {MenuComponent} from './cook/menu/menu.component';
+import {NewOrderComponent} from './student/new-order/new-order.component';
+import {MenuItemComponent} from './common/menu-item/menu-item.component';
+import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
+import {OrderableComponent} from './student/orderable/orderable.component';
 
 registerLocaleData(en);
 
@@ -43,6 +47,7 @@ registerLocaleData(en);
         UpdateMenuComponent,
         DashboardNavigatorComponent,
         MenuComponent,
+        NewOrderComponent,
         IncompleteOrdersComponent,
         HomeComponent,
         SubMenuComponent,
@@ -50,6 +55,8 @@ registerLocaleData(en);
         OrdersComponent,
         HomeNavigatorComponent,
         StudentOrderComponent,
+        MenuItemComponent,
+        OrderableComponent,
     ],
     imports: [
         BrowserModule,
@@ -57,6 +64,7 @@ registerLocaleData(en);
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        NzInputNumberModule,
         NzButtonModule,
         NzInputModule,
         ReactiveFormsModule,

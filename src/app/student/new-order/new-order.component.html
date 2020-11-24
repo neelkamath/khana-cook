@@ -1,0 +1,20 @@
+<app-home-navigator></app-home-navigator>
+<h1>Order</h1>
+<nz-radio-group (ngModelChange)="fetchMenu()" [(ngModel)]="foodPoint" name="foodPoint" required>
+    <label nz-radio nzValue="APU">APU</label>
+    <br>
+    <label nz-radio nzValue="Engineering Block">Engineering Block</label>
+    <br>
+    <label nz-radio nzValue="Breakfast and Snacks Food Bus">Breakfast and Snacks Food Bus</label>
+    <br>
+    <label nz-radio nzValue="Lunch Food Bus">Lunch Food Bus</label>
+</nz-radio-group>
+<br><br>
+<span *ngIf="items.length === 0">
+    No items available.
+    <br><br>
+</span>
+<div *ngFor="let item of items">
+    <app-orderable [item]="item" [ordered]="ordered"></app-orderable>
+</div>
+<button (click)="order()" nz-button nzType="primary">Order</button>

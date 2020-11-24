@@ -4,8 +4,6 @@
     <br><br>
 </div>
 <div *ngFor="let item of items">
-    <h3>{{item.name}}</h3>
-    <img *ngIf="item.picUrl" alt="{{item.name}}" src="{{item.picUrl}}"/>
-    <b>Rs. {{item.price}}</b> ({{item.quantity}} left)
+    <app-menu-item [item]="item"></app-menu-item>
     <nz-divider></nz-divider>
 </div>

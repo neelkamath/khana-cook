@@ -1,0 +1,5 @@
+<app-menu-item [item]="item"></app-menu-item>
+<br><br>
+Quantity:
+<nz-input-number [(ngModel)]="ordered[item.id]" [nzMax]="item.quantity" [nzMin]="0" [nzStep]="1"></nz-input-number>
+<nz-divider></nz-divider>

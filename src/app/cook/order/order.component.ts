@@ -13,7 +13,8 @@ import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../../common/messages';
 
 @Component({selector: 'app-order', templateUrl: './order.component.html'})
 export class OrderComponent {
-    @Input() order: IncompleteOrder = {token: '', status: 'PREPARING', price: 0, items: []};
+    // @ts-ignore: Property 'order' has no initializer and is not definitely assigned in the constructor.
+    @Input() order: IncompleteOrder;
 
     constructor(private message: NzMessageService) {
     }

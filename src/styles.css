@@ -3,6 +3,5 @@ body {
 }
 
 img {
-    height: 3%;
-    width: 33%;
+    max-width: 20em;
 }

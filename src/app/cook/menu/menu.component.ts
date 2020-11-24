@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {FoodPoint, Menu, MenuItem} from '../models';
-import {getReadMenu, SERVER_ERROR} from '../api';
+import {FoodPoint, Menu, MenuItem} from '../../common/models';
+import {getReadMenu, SERVER_ERROR} from '../../common/api';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {SERVER_ERROR_MESSAGE} from '../messages';
-import {getAccessToken, handleInvalidAccessToken} from '../access-token';
+import {SERVER_ERROR_MESSAGE} from '../../common/messages';
+import {listenForMenuUpdates} from '../../common/menu-update-listener';
 
 type MenuItems = {
     [key in FoodPoint]: MenuItem[];
@@ -12,27 +12,14 @@ type MenuItems = {
 @Component({selector: 'app-menu', templateUrl: './menu.component.html'})
 export class MenuComponent {
     items: MenuItems = {'Breakfast and Snacks Food Bus': [], 'Engineering Block': [], 'Lunch Food Bus': [], 'APU': []};
-    socket: WebSocket;
+    private readonly socket: WebSocket = new WebSocket('ws://localhost/updates');
 
     constructor(private message: NzMessageService) {
         this.fetchMenu().catch(console.error);
-        this.socket = new WebSocket('ws://localhost/updates');
-        this.handleUpdates();
+        listenForMenuUpdates(this.socket, message, () => this.fetchMenu());
     }
 
-    handleUpdates(): void {
-        const token = getAccessToken();
-        if (token === null) {
-            handleInvalidAccessToken(this.message);
-            return;
-        }
-        this.socket.addEventListener('open', () => this.socket.send(token));
-        this.socket.addEventListener('message', async ({data}) => {
-            if (JSON.parse(data).type === 'MENU_UPDATE') await this.fetchMenu();
-        });
-    }
-
-    async fetchMenu(): Promise<void> {
+    private async fetchMenu(): Promise<void> {
         let response: Menu;
         try {
             response = await getReadMenu();

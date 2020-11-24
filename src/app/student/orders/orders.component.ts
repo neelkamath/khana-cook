@@ -11,14 +11,14 @@ export class OrdersComponent implements OnDestroy {
     preparedOrders: PlacedOrder[] = [];
     pickedUpOrders: PlacedOrder[] = [];
     // @ts-ignore: Property 'socket' has no initializer and is not definitely assigned in the constructor.
-    socket: WebSocket;
+    private readonly socket: WebSocket = new WebSocket('ws://localhost/updates');
 
     constructor(private message: NzMessageService) {
         this.updateOrders().catch(console.error);
         this.handleUpdates();
     }
 
-    async updateOrders(): Promise<void> {
+    private async updateOrders(): Promise<void> {
         const token = getAccessToken();
         if (token === null) {
             handleInvalidAccessToken(this.message);
@@ -40,13 +40,12 @@ export class OrdersComponent implements OnDestroy {
         }
     }
 
-    handleUpdates(): void {
+    private handleUpdates(): void {
         const token = getAccessToken();
         if (token === null) {
             handleInvalidAccessToken(this.message);
             return;
         }
-        this.socket = new WebSocket('ws://localhost/updates');
         this.socket.addEventListener('open', () => this.socket.send(token));
         this.socket.addEventListener('message', async ({data}) => {
             if (['ORDER', 'ORDER_PREPARED', 'ORDER_PICKED_UP'].includes(JSON.parse(data).type))

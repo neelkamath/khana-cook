@@ -8,7 +8,7 @@ import {
 } from '../../common/api';
 import {getAccessToken, handleInvalidAccessToken} from '../../common/access-token';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {FoodPoint, IncompleteOrder, IncompleteOrderStatus, NewOrder} from '../../common/models';
+import {FoodPoint, IncompleteOrder, IncompleteOrderStatus, NewOrderUpdate} from '../../common/models';
 import {APP_ERROR_MESSAGE, SERVER_ERROR_MESSAGE} from '../../common/messages';
 
 @Component({selector: 'app-incomplete-orders', templateUrl: './incomplete-orders.component.html'})
@@ -17,10 +17,9 @@ export class IncompleteOrdersComponent implements OnDestroy {
     status: IncompleteOrderStatus = 'PREPARING';
     orders: IncompleteOrder[] = [];
     formSubmitted: boolean = false;
-    private readonly socket: WebSocket;
+    private readonly socket: WebSocket = new WebSocket('ws://localhost/updates');
 
     constructor(private message: NzMessageService) {
-        this.socket = new WebSocket('ws://localhost/updates');
         const token = getAccessToken();
         if (token === null) {
             handleInvalidAccessToken(this.message);
@@ -30,7 +29,7 @@ export class IncompleteOrdersComponent implements OnDestroy {
         this.handleUpdates();
     }
 
-    handleUpdates(): void {
+    private handleUpdates(): void {
         this.socket.addEventListener('message', async ({data}) => {
             const message = JSON.parse(data);
             switch (message.type) {
@@ -44,11 +43,11 @@ export class IncompleteOrdersComponent implements OnDestroy {
         });
     }
 
-    handleOrderStatusUpdate(orderId: string): void {
+    private handleOrderStatusUpdate(orderId: string): void {
         this.orders = this.orders.filter((order) => order.token !== orderId);
     }
 
-    async handleOrder(newOrder: NewOrder): Promise<void> {
+    private async handleOrder(newOrder: NewOrderUpdate): Promise<void> {
         const asyncItems = newOrder.items.map(async (orderItem) => {
             const menu = await getReadMenu();
             const {name, price} = menu.items.find((menuItem) => menuItem.id === orderItem.id)!;

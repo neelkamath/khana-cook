@@ -3,13 +3,11 @@ import {postRequestAccessToken, SERVER_ERROR} from '../api';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {getAccessTokenRole, saveAccessToken} from '../access-token';
 import {SERVER_ERROR_MESSAGE} from '../messages';
-import {Role} from '../models';
 
 @Component({selector: 'app-log-in', templateUrl: './log-in.component.html'})
 export class LogInComponent {
     emailAddress: string = '';
     password: string = '';
-    type: Role = 'student';
 
     constructor(private message: NzMessageService) {
     }
