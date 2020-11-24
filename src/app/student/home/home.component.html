@@ -10,12 +10,10 @@
         <i nz-icon nzTheme="outline" nzType="dollar-circle"></i> View orders
     </button>
 </a>
-<br><br><br><br>
-<span *ngFor="let foodPoint of ['APU', 'Engineering Block', 'Breakfast and Snacks Food Bus', 'Lunch Food Bus']">
-    <a href="/student/menus?food-point={{foodPoint}}">
-        <button nz-button nzType="primary">
-            <i nz-icon nzTheme="outline" nzType="build"></i> {{foodPoint}} menu
-        </button>
-    </a>
-    <br><br>
-</span>
+<br><br>
+<a href="/menu">
+    <button nz-button nzType="primary">
+        <i nz-icon nzTheme="outline" nzType="build"></i> View menu
+    </button>
+</a>
+<!--Implement ordering.-->

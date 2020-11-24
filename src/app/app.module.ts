@@ -21,7 +21,6 @@ import {LogInComponent} from './common/log-in/log-in.component';
 import {DashboardComponent} from './cook/dashboard/dashboard.component';
 import {AccountComponent} from './common/account/account.component';
 import {UpdateMenuComponent} from './cook/update-menu/update-menu.component';
-import {MenuComponent} from './cook/menu/menu.component';
 import {DashboardNavigatorComponent} from './cook/dashboard-navigator/dashboard-navigator.component';
 import {IncompleteOrdersComponent} from './cook/incomplete-orders/incomplete-orders.component';
 import {SubMenuComponent} from './cook/sub-menu/sub-menu.component';
@@ -30,6 +29,7 @@ import {HomeComponent} from './student/home/home.component';
 import {OrdersComponent} from './student/orders/orders.component';
 import {HomeNavigatorComponent} from './student/home-navigator/home-navigator.component';
 import {StudentOrderComponent} from './student/student-order/student-order.component';
+import {MenuComponent} from './common/menu/menu.component';
 
 registerLocaleData(en);
 
